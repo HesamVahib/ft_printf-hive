@@ -3,11 +3,13 @@
 
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdio.h>
 #include "libft/libft.h"
 
 void    ft_format(char  *str, char  c);
 int ft_format_specifier(va_list args, const char format);
 int ft_print_str(char *str);
 int ft_print_nbr(int    number);
+int ft_print_unsnbr(unsigned    int number);
 
 #endif

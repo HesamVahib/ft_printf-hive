@@ -1,6 +1,4 @@
-#include <stdarg.h>
-#include <unistd.h>
-#include "libft/libft.h"
+
 #include "ft_printf.h"
 
 int ft_printf(const char *str, ...)
@@ -30,10 +28,15 @@ int ft_printf(const char *str, ...)
 
 int main() {
     int x = 42;
+    int *ptr = &x; 
     int i;
-    i = ft_printf("Salam Hesa%c hehe %s. and this is signed number: %d, and this is unsigned number: %i, and precent: %%, again %u\n", 'm', "ferfere", -123, 124, -1);
+    i = ft_printf("This is the addres of x: %s\n", (void *)ptr);
     printf("len ft is: %i\n", i);
-    i = printf("Salam Hesa%c hehe %s. and this is signed number: %d, and this is unsigned number: %i, and precent: %%, again %u\n", 'm', "ferfere", -123, 124, -1);
+    i = printf("This is the addres of x: %p\n", (void *)ptr);
+    printf("len normal is: %i\n", i);
+    i = ft_printf("Salam Hesa%c hehe %s. and this is signed number: %d, and this is unsigned number: %i, and precent: %%, again %u\n", 'm', "ferfere", -123, 124, -42);
+    printf("len ft is: %i\n", i);
+    i = printf("Salam Hesa%c hehe %s. and this is signed number: %d, and this is unsigned number: %i, and precent: %%, again %u\n", 'm', "ferfere", -123, 124, -42);
     printf("len normal is: %i\n", i);
     printf("Char: %c, String: %s, Pointer: %p, Signed: %d, Unsigned: %u, Hex: %x, Percent: %%\n",
            'A', "Test", &x, -123, 123, 255);
