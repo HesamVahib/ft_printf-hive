@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
+/*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvahib <hvahib@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 20:20:46 by hvahib            #+#    #+#             */
-/*   Updated: 2024/11/27 21:20:36 by hvahib           ###   ########.fr       */
+/*   Created: 2024/11/27 20:51:59 by hvahib            #+#    #+#             */
+/*   Updated: 2024/11/27 20:53:29 by hvahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ptr_len_calc(uintptr_t num)
+int	hex_len_calc(unsigned int num)
 {
 	int	len;
 
@@ -20,39 +20,43 @@ int	ptr_len_calc(uintptr_t num)
 	while (num != 0)
 	{
 		len++;
-		num /= 16;
+		num = num / 16;
 	}
 	return (len);
 }
 
-void	ptr_writer(uintptr_t num)
+void	hex_writer(unsigned int num, const char format)
 {
 	if (num >= 16)
 	{
-		ptr_writer(num / 16);
-		ptr_writer(num % 16);
+		hex_writer((num / 16), format);
+		hex_writer((num % 16), format);
 	}
 	else
 	{
 		if (num <= 9)
 			ft_putchar_fd((num + '0'), 1);
 		else
-			ft_putchar_fd((num - 10 + 'a'), 1);
+		{
+			if (format == 'x')
+				ft_putchar_fd((num - 10 + 'a'), 1);
+			if (format == 'X')
+				ft_putchar_fd((num - 10 + 'A'), 1);
+		}
 	}
 }
 
-int	ft_print_ptr(uintptr_t ptr)
+int	ft_print_hex(unsigned int num, const char format)
 {
-	int			len;
+	int	len;
 
 	len = 0;
-	len += ft_print_str("0x");
-	if (ptr == 0)
+	if (num == 0)
 		len += ft_print_str("0");
 	else
 	{
-		ptr_writer(ptr);
-		len += ptr_len_calc(ptr);
+		hex_writer(num, format);
+		len += hex_len_calc(num);
 	}
 	return (len);
 }

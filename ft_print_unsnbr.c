@@ -1,58 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
+/*   ft_print_unsnbr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvahib <hvahib@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 20:20:46 by hvahib            #+#    #+#             */
-/*   Updated: 2024/11/27 21:20:36 by hvahib           ###   ########.fr       */
+/*   Created: 2024/11/27 20:04:32 by hvahib            #+#    #+#             */
+/*   Updated: 2024/11/27 20:09:26 by hvahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ptr_len_calc(uintptr_t num)
+int	uns_len(unsigned int n)
 {
 	int	len;
 
 	len = 0;
-	while (num != 0)
+	while (n != 0)
 	{
+		n = n / 10;
 		len++;
-		num /= 16;
 	}
 	return (len);
 }
 
-void	ptr_writer(uintptr_t num)
+char	*uns_itoa(unsigned int n)
 {
-	if (num >= 16)
+	int		len;
+	char	*num;
+
+	len = uns_len(n);
+	num = (char *)malloc((len + 1) * sizeof(char));
+	if (!num)
+		return (0);
+	num[len] = '\0';
+	while (len > 0)
 	{
-		ptr_writer(num / 16);
-		ptr_writer(num % 16);
+		len--;
+		num[len] = (n % 10) + '0';
+		n /= 10;
 	}
-	else
-	{
-		if (num <= 9)
-			ft_putchar_fd((num + '0'), 1);
-		else
-			ft_putchar_fd((num - 10 + 'a'), 1);
-	}
+	return (num);
 }
 
-int	ft_print_ptr(uintptr_t ptr)
+int	ft_print_unsnbr(unsigned int number)
 {
-	int			len;
+	int		len;
+	char	*num;
 
 	len = 0;
-	len += ft_print_str("0x");
-	if (ptr == 0)
-		len += ft_print_str("0");
+	if (number == 0)
+		len += ft_print_nbr(number);
 	else
 	{
-		ptr_writer(ptr);
-		len += ptr_len_calc(ptr);
+		num = uns_itoa(number);
+		len += ft_print_str(num);
+		free(num);
 	}
 	return (len);
 }
