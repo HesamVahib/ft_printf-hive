@@ -7,7 +7,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${fileDirname}/*.c", // Wildcard expansion works with shell enabled
+                "${fileDirname}/*.c",
                 "-I${workspaceFolder}",
                 "-Ilibft",
                 "-Llibft",
@@ -17,7 +17,7 @@
             ],
             "options": {
                 "cwd": "${fileDirname}",
-                "shell": true // Enable shell expansion
+                "shell": true
             },
             "problemMatcher": [
                 "$gcc"
