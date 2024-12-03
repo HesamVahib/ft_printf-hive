@@ -6,7 +6,7 @@
 /*   By: hvahib <hvahib@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 20:38:00 by hvahib            #+#    #+#             */
-/*   Updated: 2024/11/27 20:52:40 by hvahib           ###   ########.fr       */
+/*   Updated: 2024/12/03 14:56:28 by hvahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	ft_print_str(char *str)
 
 	if (!str)
 	{
-		ft_putstr_fd("(null)", 1);
+		if (ft_putstr_fd("(null)", 1) < 0)
+			return (-1);
 		return (6);
 	}
 	len = ft_strlen(str);

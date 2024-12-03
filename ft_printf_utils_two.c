@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_printf_utils_two.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: havhib <hvahib@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: hvahib <hvahib@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 15:14:40 by havhib            #+#    #+#             */
-/*   Updated: 2024/11/15 18:08:37 by havhib           ###   ########.fr       */
+/*   Created: 2024/12/03 14:32:15 by hvahib            #+#    #+#             */
+/*   Updated: 2024/12/03 20:48:30 by hvahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+
+size_t	ft_strlen(const char *s)
+{
+	int	len;
+
+	len = 0;
+	while (s[len] != '\0')
+		len++;
+	return (len);
+}
 
 char	*ft_strdup(const char *s)
 {

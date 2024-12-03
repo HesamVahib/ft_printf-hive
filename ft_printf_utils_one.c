@@ -1,16 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_printf_utils_one.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: havhib <hvahib@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: hvahib <hvahib@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 15:13:16 by havhib            #+#    #+#             */
-/*   Updated: 2024/11/15 21:27:24 by havhib           ###   ########.fr       */
+/*   Created: 2024/12/03 14:32:15 by hvahib            #+#    #+#             */
+/*   Updated: 2024/12/03 20:47:03 by hvahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+
+int	ft_putchar_fd(char c, int fd)
+{
+	if (write(fd, &c, 1) < 0)
+		return (-1);
+	return (1);
+}
+
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	unsigned char	*d;
+	unsigned char	*s;
+	size_t			i;
+
+	if (dest == src || !n)
+		return (dest);
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	i = 0;
+	while (i < n)
+	{
+		*d++ = *s++;
+		i++;
+	}
+	return (dest);
+}
+
+int	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (ft_putchar_fd(s[i], fd) < 0)
+			return (-1);
+		i++;
+	}
+	return (i);
+}
 
 char	*calculation_num(char *num, int len, int n, int sign)
 {

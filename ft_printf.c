@@ -6,7 +6,7 @@
 /*   By: hvahib <hvahib@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 20:39:00 by hvahib            #+#    #+#             */
-/*   Updated: 2024/11/27 21:20:58 by hvahib           ###   ########.fr       */
+/*   Updated: 2024/12/03 20:42:07 by hvahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_printf(const char *str, ...)
 
 	va_start(args, str);
 	counter = 0;
+	if (!str)
+		return (-1);
 	while (*str)
 	{
 		if (*str == '%')
@@ -26,9 +28,13 @@ int	ft_printf(const char *str, ...)
 			counter += ft_format_specifier(args, *(str + 1));
 			str += 2;
 		}
-		ft_putchar_fd(*str, 1);
-		counter++;
-		str++;
+		if (*str != '\0' && *str != '%')
+		{
+			if (ft_putchar_fd(*str, 1) < 0)
+				return (-1);
+			counter++;
+			str++;
+		}
 	}
 	va_end(args);
 	return (counter);

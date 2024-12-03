@@ -6,7 +6,7 @@
 /*   By: hvahib <hvahib@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 20:20:46 by hvahib            #+#    #+#             */
-/*   Updated: 2024/11/27 21:20:36 by hvahib           ###   ########.fr       */
+/*   Updated: 2024/12/03 21:17:56 by hvahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ int	ft_print_ptr(uintptr_t ptr)
 	int			len;
 
 	len = 0;
+	if (!ptr)
+	{
+		if (ft_putstr_fd("(nil)", 1) < 0)
+			return (-1);
+		return (5);
+	}
 	len += ft_print_str("0x");
 	if (ptr == 0)
 		len += ft_print_str("0");

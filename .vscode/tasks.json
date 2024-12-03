@@ -9,9 +9,6 @@
                 "-g",
                 "${fileDirname}/*.c",
                 "-I${workspaceFolder}",
-                "-Ilibft",
-                "-Llibft",
-                "-lft",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
