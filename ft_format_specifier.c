@@ -31,5 +31,8 @@ int	ft_format_specifier(va_list args, const char format)
 		len += ft_print_ptr(va_arg(args, uintptr_t));
 	else if (format == 'x' || format == 'X')
 		len += ft_print_hex(va_arg(args, unsigned int), format);
+	else
+		len = -1;
 	return (len);
 }
+
