@@ -6,12 +6,13 @@
 /*   By: hvahib <hvahib@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:01:00 by hvahib            #+#    #+#             */
-/*   Updated: 2024/12/03 21:04:24 by hvahib           ###   ########.fr       */
+/*   Updated: 2024/12/10 19:20:09 by hvahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <limits.h>
+#include <stdio.h>
 
 int	main(void)
 {
@@ -55,5 +56,17 @@ int	main(void)
 	h = printf("Salam Hesa%c hehe %s. and this is signed number: %d, and this is unsigned number: %i, and percent: %%\n", 'm', "ferfere", -123, 124);
 	printf("len normal is: %i\n", h);
 	//printf("Char: %c, String: %s, Pointer: %p, Signed: %d, Unsigned: %u, Hex: %x, Percent: %%\n", 'A', "Test", &x, -123, 123, 255);
+	printf("%i\n", ft_printf("this is before %T"));
+	printf("%i\n", printf("this is before %T"));
+	printf("%i\n", ft_printf("%T this is after"));
+	printf("%i\n", printf("%T this is after"));
+	printf("%i\n", ft_printf("%"));
+	printf("%i\n", printf("%"));
+	printf("%i\n", ft_printf("%% %%"));
+	printf("%i\n", printf("%% %%"));
+	printf("%i\n", ft_printf("%%"));
+	printf("%i\n", printf("%%"));
+	ft_printf("hello");
+	printf("\n");
 	return (0);
 }
