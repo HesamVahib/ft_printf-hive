@@ -6,7 +6,7 @@
 /*   By: hvahib <hvahib@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 20:43:50 by hvahib            #+#    #+#             */
-/*   Updated: 2024/12/03 16:53:18 by hvahib           ###   ########.fr       */
+/*   Updated: 2024/12/10 18:34:12 by hvahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int	ft_format_specifier(va_list args, const char format)
 	else if (format == 'x' || format == 'X')
 		len += ft_print_hex(va_arg(args, unsigned int), format);
 	else
-		len = -1;
+	{
+		len += ft_putchar_fd('%', 1);
+		len += ft_putchar_fd(format, 1);
+	}
 	return (len);
 }
-
