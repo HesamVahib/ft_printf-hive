@@ -6,11 +6,22 @@
 /*   By: hvahib <hvahib@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 20:39:00 by hvahib            #+#    #+#             */
-/*   Updated: 2024/12/03 20:42:07 by hvahib           ###   ########.fr       */
+/*   Updated: 2024/12/10 19:06:34 by hvahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	precent_identifier(const char	*str)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	if (str[len - 1] == '%' && len <= 1)
+		return (-1);
+	else
+		return (0);
+}
 
 int	ft_printf(const char *str, ...)
 {
@@ -18,10 +29,10 @@ int	ft_printf(const char *str, ...)
 	int		counter;
 
 	va_start(args, str);
-	counter = 0;
+	counter = precent_identifier(str);
 	if (!str)
 		return (-1);
-	while (*str)
+	while (*str && counter != -1)
 	{
 		if (*str == '%')
 		{
